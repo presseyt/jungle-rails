@@ -14,7 +14,7 @@ class Admin::ProductsController < ApplicationController
     if @product.save
       redirect_to [:admin, :products], notice: 'Product created!'
     else
-      render :new
+      render [:products, :index]
     end
   end
 
