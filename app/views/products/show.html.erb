@@ -32,31 +32,42 @@
     <h2> Reviews </h2>
     <h4> <%= @product.average_rating_string %> </h4>
 
-    <div class="row">
-      <div class="col-sm-6 col-sm-offset-1">
+    <% if current_user %>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-1">
 
-        <%= form_for [@product, @product.ratings.build] do |form| %>
-          <div class="form-group">
-            <%= form.label :rating %>
-            <%= form.number_field :rating, in: 1..5, class: 'form-control' %>
-          </div>
+          <%= form_for [@product, @product.ratings.build] do |form| %>
+            <div class="form-group">
+              <%= form.label :rating %>
+              <%= form.number_field :rating, in: 1..5, class: 'form-control' %>
+            </div>
 
-          <div class="form-group">
-            <%= form.label :description %>
-            <%= form.text_area :description, class: 'form-control' %>
-          </div>
-        <%= form.submit 'Make Review', class: 'btn btn-primary' %>
+            <div class="form-group">
+              <%= form.label :description %>
+              <%= form.text_area :description, class: 'form-control' %>
+            </div>
+          <%= form.submit 'Make Review', class: 'btn btn-primary' %>
 
-      <% end %>
+        <% end %>
+        </div>
       </div>
-    </div>
+      <br>
+    <% else %>
+      <p>Log in to create a review!</p>
+    <% end %>
 
-    <br>
-
-    <% @product.ratings.each do |rating| %>
+    <% @product.ratings.order(created_at: :desc).each do |rating| %>
       <% if rating.description %>
-        <div class="well">
-          <p> <%= rating.rating %>/5 <strong><%=rating.user.name %></strong>: <%= rating.description %></p>
+        <div class="well rating">
+          <% if rating.user == current_user %>
+            <aside class="delete_rating"> <%= link_to 'Remove rating', product_rating_path(@product, rating),
+                method: :delete, data: {confirm: 'Are you sure?'} %>
+            </aside>
+          <% end %>
+          <div class="rating_details">
+            <p> <%= rating.rating %>/5 <strong><%=rating.user.name %></strong>: </p>
+            <p><%= rating.description %> </p>
+          </div>
         </div>
       <% end %>
     <% end %>
