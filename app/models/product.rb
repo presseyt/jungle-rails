@@ -11,4 +11,12 @@ class Product < ActiveRecord::Base
   validates :quantity, presence: true
   validates :category, presence: true
 
+  def average_rating_string
+    if (self.ratings.length > 0)
+      "#Average Rating: #{self.ratings.average(:rating).to_f.round(1)}/5"
+    else
+      "Be the first to rate this product!"
+    end
+  end
+
 end
