@@ -24,6 +24,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  # def admin_authorization
+  #   http_basic_authenticate_with :name => ENV(ADMIN_USER_NAME), :password => ENV(ADMIN_PASSWORD)
+  # end
+  # helper_method :admin_authorization
+
   # def authorize
   #   redirect_to '/login' unless current_user
   # end
