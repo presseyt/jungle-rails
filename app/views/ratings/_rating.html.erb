@@ -1,0 +1,11 @@
+<div class="well rating">
+  <% if rating.user == current_user %>
+    <aside class="delete_rating"> <%= link_to 'Remove rating', product_rating_path(@product, rating),
+        method: :delete, data: {confirm: 'Are you sure?'} %>
+    </aside>
+  <% end %>
+  <div class="rating_details">
+    <p> <%= rating.rating %>/5 <strong><%=rating.user.name %></strong>: </p>
+    <p><%= rating.description %> </p>
+  </div>
+</div>
