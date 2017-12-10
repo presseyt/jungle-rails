@@ -2,8 +2,8 @@
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
-!["products page"](#1)
-!["checkout page"](#2)
+!["products page"](https://github.com/presseyt/jungle-rails/blob/master/lib/assets/productspage.png?raw=true)
+!["checkout page"](https://github.com/presseyt/jungle-rails/blob/master/lib/assets/checkoutpage.png?raw=true)
 
 ## Setup
 
