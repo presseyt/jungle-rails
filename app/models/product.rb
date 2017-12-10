@@ -13,7 +13,7 @@ class Product < ActiveRecord::Base
 
   def average_rating_string
     if (self.ratings.length > 0)
-      "#Average Rating: #{self.ratings.average(:rating).to_f.round(1)}/5"
+      "Average Rating: #{self.ratings.average(:rating).to_f.round(1)}"
     else
       "Be the first to rate this product!"
     end
